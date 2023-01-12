@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
 
 DEPENDS += "qtdeclarative"
 
-RDEPENDS_${PN}-dev = ""
+RDEPENDS:${PN}-dev = ""
 
 # Patches from https://github.com/meta-qt5/qtquickcontrols/commits/b5.6
 # 5.6.meta-qt5.1

@@ -33,7 +33,7 @@ USE_X11 = " \
     qtx11extras-mkspecs \
 "
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     packagegroup-core-standalone-sdk-target \
     libsqlite3-dev \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-dev', '', d)} \
@@ -109,7 +109,7 @@ RDEPENDS_${PN} += " \
     qttranslations-qtxmlpatterns \
 "
 
-RRECOMMENDS_${PN} += " \
+RRECOMMENDS:${PN} += " \
     qtquickcontrols-qmlplugins \
     qttools-plugins \
 "

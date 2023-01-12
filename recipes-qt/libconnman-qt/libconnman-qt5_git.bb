@@ -14,4 +14,4 @@ S = "${WORKDIR}/git"
 
 inherit pkgconfig
 
-RDEPENDS_${PN} += "connman"
+RDEPENDS:${PN} += "connman"

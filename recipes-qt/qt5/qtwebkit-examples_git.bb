@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = " \
 PACKAGECONFIG ?= "examples"
 
 DEPENDS += "qtwebkit qtxmlpatterns"
-RDEPENDS_${PN}-examples += "qtwebkit-qmlplugins"
-RDEPENDS_${PN}-examples += "${@bb.utils.contains('PACKAGECONFIG_OPENSSL', 'openssl', 'ca-certificates', '', d)}"
+RDEPENDS:${PN}-examples += "qtwebkit-qmlplugins"
+RDEPENDS:${PN}-examples += "${@bb.utils.contains('PACKAGECONFIG_OPENSSL', 'openssl', 'ca-certificates', '', d)}"
 
 SRCREV = "0c623fab420102c54fa533da3b8ca774290d6d13"

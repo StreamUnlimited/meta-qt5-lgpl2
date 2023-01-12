@@ -25,7 +25,7 @@ EXTRA_OEMAKE += "QMAKE_SYNCQT=${STAGING_BINDIR_NATIVE}${QT_DIR_NAME}/syncqt"
 PACKAGECONFIG ??= "qtxmlpatterns"
 PACKAGECONFIG[qtxmlpatterns] = ",,qtxmlpatterns"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # disable qtxmlpatterns test if it isn't enabled by PACKAGECONFIG
     sed -e 's/^\(qtHaveModule(xmlpatterns)\)/OE_QTXMLPATTERNS_ENABLED:\1/' -i ${S}/src/imports/imports.pro
     sed -e 's/^\(!qtHaveModule(xmlpatterns)\)/!OE_QTXMLPATTERNS_ENABLED|\1/' -i ${S}/tests/auto/quick/quick.pro

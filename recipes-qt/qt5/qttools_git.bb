@@ -21,12 +21,12 @@ SRC_URI += " \
     file://0004-linguist-tools-cmake-allow-overriding-the-location-f.patch \
 "
 
-FILES_${PN}-tools += "${datadir}${QT_DIR_NAME}/phrasebooks"
-FILES_${PN}-examples = "${datadir}${QT_DIR_NAME}/examples"
+FILES:${PN}-tools += "${datadir}${QT_DIR_NAME}/phrasebooks"
+FILES:${PN}-examples = "${datadir}${QT_DIR_NAME}/examples"
 
 PACKAGECONFIG ??= ""
-PACKAGECONFIG_class-native ??= "linguistonly"
-PACKAGECONFIG_class-nativesdk ??= "linguistonly"
+PACKAGECONFIG:class-native ??= "linguistonly"
+PACKAGECONFIG:class-nativesdk ??= "linguistonly"
 PACKAGECONFIG[linguistonly] = ""
 PACKAGECONFIG[qtwebkit] = ",,qtwebkit"
 

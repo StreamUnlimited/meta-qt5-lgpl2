@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 DEPENDS += "qtbase"
-DEPENDS_class-target += "qtdeclarative qt3d-native"
+DEPENDS:class-target += "qtdeclarative qt3d-native"
 
 # Patches from https://github.com/meta-qt5/qt3d/commits/b5.6
 # 5.6.meta-qt5.1
@@ -18,13 +18,13 @@ SRC_URI += " \
 "
 
 PACKAGECONFIG ??= ""
-PACKAGECONFIG_class-native ??= "tools-only"
-PACKAGECONFIG_class-nativesdk ??= "tools-only"
+PACKAGECONFIG:class-native ??= "tools-only"
+PACKAGECONFIG:class-nativesdk ??= "tools-only"
 PACKAGECONFIG[tools-only] = "CONFIG+=tools-only"
 
 EXTRA_QMAKEVARS_PRE += "${PACKAGECONFIG_CONFARGS}"
 
-FILES_${PN}-qmlplugins += " \
+FILES:${PN}-qmlplugins += " \
     ${OE_QMAKE_PATH_QML}/*/*/*.bez \
     ${OE_QMAKE_PATH_QML}/*/*/*.obj \
 "

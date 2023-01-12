@@ -24,11 +24,11 @@ QT_WAYLAND_DEFINES ?= ""
 EXTRA_QMAKEVARS_PRE += "CONFIG+=${QT_WAYLAND_CONFIG}"
 EXTRA_QMAKEVARS_PRE += "DEFINES+=${QT_WAYLAND_DEFINES}"
 
-FILES_${PN}-plugins += " \
+FILES:${PN}-plugins += " \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/*${SOLIBSDEV} \
 "
 
-FILES_${PN}-plugins-dbg += " \
+FILES:${PN}-plugins-dbg += " \
     ${OE_QMAKE_PATH_PLUGINS}/*/*/.debug/* \
 "
 

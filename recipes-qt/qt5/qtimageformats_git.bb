@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 DEPENDS += "qtbase"
-ALLOW_EMPTY_${PN} = "1"
+ALLOW_EMPTY:${PN} = "1"
 
 # Patches from https://github.com/meta-qt5/qtimageformats/commits/b5.6
 # 5.6.meta-qt5.1

@@ -42,11 +42,11 @@ PACKAGECONFIG[vpx] = "WEBENGINE_CONFIG+=use_system_vpx,,libvpx"
 EXTRA_QMAKEVARS_PRE += "${PACKAGECONFIG_CONFARGS}"
 
 COMPATIBLE_MACHINE = "(-)"
-COMPATIBLE_MACHINE_x86 = "(.*)"
-COMPATIBLE_MACHINE_x86-64 = "(.*)"
-COMPATIBLE_MACHINE_armv6 = "(.*)"
-COMPATIBLE_MACHINE_armv7a = "(.*)"
-COMPATIBLE_MACHINE_armv7ve = "(.*)"
+COMPATIBLE_MACHINE:x86 = "(.*)"
+COMPATIBLE_MACHINE:x86-64 = "(.*)"
+COMPATIBLE_MACHINE:armv6 = "(.*)"
+COMPATIBLE_MACHINE:armv7a = "(.*)"
+COMPATIBLE_MACHINE:armv7ve = "(.*)"
 
 inherit qmake5
 inherit gettext
@@ -90,16 +90,16 @@ do_configure() {
         -after ${EXTRA_QMAKEVARS_POST}
 }
 
-do_install_append() {
+do_install:append() {
     rmdir ${D}${OE_QMAKE_PATH_PLUGINS}/${BPN} ${D}${OE_QMAKE_PATH_PLUGINS} || true
     sed -i 's@ -Wl,--start-group.*-Wl,--end-group@@g; s@-L${B}[^ ]* @ @g' ${D}${libdir}/pkgconfig/Qt5WebEngineCore.pc
 }
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
 # for /usr/share/qt5/qtwebengine_resources.pak
-FILES_${PN} += "${OE_QMAKE_PATH_QT_TRANSLATIONS} ${OE_QMAKE_PATH_QT_DATA}"
+FILES:${PN} += "${OE_QMAKE_PATH_QT_TRANSLATIONS} ${OE_QMAKE_PATH_QT_DATA}"
 
-RDEPENDS_${PN}-examples += " \
+RDEPENDS:${PN}-examples += " \
     ${PN}-qmlplugins \
     qtquickcontrols-qmlplugins \
     qtdeclarative-qmlplugins \
@@ -121,7 +121,7 @@ SRC_URI += " \
 # Patches from https://github.com/meta-qt5/qtwebengine-chromium/commits/49-based
 # 49-based.meta-qt5.1
 SRC_URI += " \
-    file://0001-chromium-base.gypi-include-atomicops_internals_x86_g.patch;patchdir=src/3rdparty \
+    file://0001-chromium-base.gypi-include-atomicops_internals:x86_g.patch;patchdir=src/3rdparty \
     file://0002-chromium-Change-false-to-FALSE-and-1-to-TRUE-FIX-qtw.patch;patchdir=src/3rdparty \
 "
 
@@ -134,4 +134,4 @@ SRCREV_FORMAT = "qtwebengine_chromium"
 S = "${WORKDIR}/git"
 
 # WARNING: qtwebengine-5.5.99+5.6.0-rc+gitAUTOINC+3f02c25de4_779a2388fc-r0 do_package_qa: QA Issue: ELF binary '/OE/build/oe-core/tmp-glibc/work/i586-oe-linux/qtwebengine/5.5.99+5.6.0-rc+gitAUTOINC+3f02c25de4_779a2388fc-r0/packages-split/qtwebengine/usr/lib/libQt5WebEngineCore.so.5.6.0' has relocations in .text [textrel]
-INSANE_SKIP_${PN} += "textrel"
+INSANE_SKIP:${PN} += "textrel"

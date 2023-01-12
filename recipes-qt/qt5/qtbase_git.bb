@@ -30,7 +30,7 @@ DEPENDS += "qtbase-native"
 # LGPL-3.0 is used only in src/plugins/platforms/android/extract.cpp
 
 # for syncqt
-RDEPENDS_${PN}-tools += "perl"
+RDEPENDS:${PN}-tools += "perl"
 
 # separate some parts of PACKAGECONFIG which are often changed
 # be aware that you need to add icu to build qtwebkit, default
@@ -141,7 +141,7 @@ QT_CONFIG_FLAGS += " \
     ${PACKAGECONFIG_CONFARGS} \
 "
 
-do_generate_qt_config_file_append() {
+do_generate_qt_config_file:append() {
     cat >> ${QT_CONF_PATH} <<EOF
 
 [EffectivePaths]
@@ -151,8 +151,8 @@ EOF
 
 # Causes qdrawhelper.s: Error: unaligned opcodes detected in executable segment
 # when building qtbase/5.6.3+gitAUTOINC+e6f8b072d2-r0/git/src/gui/painting/qdrawhelper.cpp
-ARM_INSTRUCTION_SET_armv4 = "arm"
-ARM_INSTRUCTION_SET_armv5 = "arm"
+ARM_INSTRUCTION_SET:armv4 = "arm"
+ARM_INSTRUCTION_SET:armv5 = "arm"
 
 # qtbase is exception, we need to use mkspecs from ${S}
 QMAKE_MKSPEC_PATH = "${B}"
@@ -209,7 +209,7 @@ do_configure() {
     qmake5_base_do_configure
 }
 
-do_install_append() {
+do_install:append() {
     # Avoid qmake error "Cannot read [...]/usr/lib/qt5/mkspecs/oe-device-extra.pri: No such file or directory"
     touch ${D}/${OE_QMAKE_PATH_QT_ARCHDATA}/mkspecs/oe-device-extra.pri
 
@@ -247,7 +247,7 @@ PACKAGES =. " \
     ${PN}-fonts-qpf \
 "
 
-RRECOMMENDS_${PN}-fonts = " \
+RRECOMMENDS:${PN}-fonts = " \
     ${PN}-fonts-ttf-vera \
     ${PN}-fonts-ttf-dejavu \
     ${PN}-fonts-pfa \
@@ -255,19 +255,19 @@ RRECOMMENDS_${PN}-fonts = " \
     ${PN}-fonts-qpf \
 "
 
-ALLOW_EMPTY_${PN}-fonts = "1"
+ALLOW_EMPTY:${PN}-fonts = "1"
 
-FILES_${PN}-fonts-ttf-vera       = "${OE_QMAKE_PATH_QT_FONTS}/Vera*.ttf"
-FILES_${PN}-fonts-ttf-dejavu     = "${OE_QMAKE_PATH_QT_FONTS}/DejaVu*.ttf"
-FILES_${PN}-fonts-pfa            = "${OE_QMAKE_PATH_QT_FONTS}/*.pfa"
-FILES_${PN}-fonts-pfb            = "${OE_QMAKE_PATH_QT_FONTS}/*.pfb"
-FILES_${PN}-fonts-qpf            = "${OE_QMAKE_PATH_QT_FONTS}/*.qpf*"
-FILES_${PN}-fonts                = "${OE_QMAKE_PATH_QT_FONTS}/README \
+FILES:${PN}-fonts-ttf-vera       = "${OE_QMAKE_PATH_QT_FONTS}/Vera*.ttf"
+FILES:${PN}-fonts-ttf-dejavu     = "${OE_QMAKE_PATH_QT_FONTS}/DejaVu*.ttf"
+FILES:${PN}-fonts-pfa            = "${OE_QMAKE_PATH_QT_FONTS}/*.pfa"
+FILES:${PN}-fonts-pfb            = "${OE_QMAKE_PATH_QT_FONTS}/*.pfb"
+FILES:${PN}-fonts-qpf            = "${OE_QMAKE_PATH_QT_FONTS}/*.qpf*"
+FILES:${PN}-fonts                = "${OE_QMAKE_PATH_QT_FONTS}/README \
                                     ${OE_QMAKE_PATH_QT_FONTS}/fontdir"
 
-RRECOMMENDS_${PN}-plugins += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libx11-locale', '', d)}"
+RRECOMMENDS:${PN}-plugins += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libx11-locale', '', d)}"
 
-sysroot_stage_dirs_append() {
+sysroot_stage_dirs:append() {
     # $to is 2nd parameter passed to sysroot_stage_dir, e.g. ${SYSROOT_DESTDIR} passed from sysroot_stage_all
     rm -rf $to${OE_QMAKE_PATH_QT_FONTS}
 }

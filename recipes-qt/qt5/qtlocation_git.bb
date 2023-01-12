@@ -18,7 +18,7 @@ PACKAGECONFIG ??= ""
 PACKAGECONFIG[geoclue] = "OE_GEOCLUE_ENABLED,,gconf geoclue"
 PACKAGECONFIG[gypsy] = "OE_GYPSY_ENABLED,,gconf gypsy"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # disable geoclue tests if it isn't enabled by PACKAGECONFIG
     sed -i -e 's/^\(qtCompileTest(geoclue)\)/OE_GEOCLUE_ENABLED:\1/' ${S}/qtlocation.pro
     sed -i -e 's/^\(qtCompileTest(geoclue-satellite)\)/OE_GEOCLUE_ENABLED:\1/' ${S}/qtlocation.pro

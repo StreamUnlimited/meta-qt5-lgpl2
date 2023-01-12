@@ -1,5 +1,6 @@
 require qt5.inc
 require qt5-git.inc
+inherit pkgconfig
 
 LICENSE = "GFDL-1.3 & BSD-3-Clause & (LGPL-2.1-only & The-Qt-Company-Qt-LGPL-Exception-1.1 | LGPL-3.0-only)"
 LIC_FILES_CHKSUM = " \

@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING.LESSER;md5=4fbd65380cdd255951079008b364516c"
 DEPENDS = "qtbase"
 
 SRCREV = "a4832b4c941b5ff3f5fab23adcff39e6ad6cb4e5"
-SRC_URI = "git://github.com/vinipsmaker/tufao.git;protocol=http \
+SRC_URI = "git://github.com/vinipsmaker/tufao.git;protocol=https;branch=master \
            file://build-Fix-mkspecs-and-CMake-module-install-directori.patch"
 
 # This includes bugfixes from 1.x branch

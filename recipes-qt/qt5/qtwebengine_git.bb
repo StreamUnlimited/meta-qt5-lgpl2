@@ -1,6 +1,6 @@
 SUMMARY = "QtWebEngine combines the power of Chromium and Qt"
 
-LICENSE = "LGPL-3.0 & BSD"
+LICENSE = "LGPL-3.0-only & BSD-3-Clause"
 LIC_FILES_CHKSUM = " \
     file://src/core/browser_context_qt.cpp;md5=8b5dcd02451f832169d229afb56f27fd;beginline=1;endline=35 \
     file://src/3rdparty/chromium/LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d \

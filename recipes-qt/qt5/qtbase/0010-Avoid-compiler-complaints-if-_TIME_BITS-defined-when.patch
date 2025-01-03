@@ -1,0 +1,36 @@
+From 52d101c5dac271950b61c90dc5b4d48a47c0c929 Mon Sep 17 00:00:00 2001
+From: Mark Adler <madler@alumni.caltech.edu>
+Date: Sat, 29 Jul 2023 22:13:09 -0700
+Subject: [PATCH] Avoid compiler complaints if _TIME_BITS defined when building
+ zlib.
+
+commit a566e156b3fa07b566ddbf6801b517a9dba04fa3 upstream zlib
+
+zlib does not use time_t, so _TIME_BITS is irrelevant. However it
+may be defined anyway as part of a sledgehammer indiscriminately
+applied to all builds.
+
+[backport]
+Signed-off-by: Peter Suti <peter.suti@streamunlimited.com>
+---
+ src/3rdparty/zlib/gzguts.h | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/3rdparty/zlib/gzguts.h b/src/3rdparty/zlib/gzguts.h
+index 9e4368e889..ed2bf02807 100644
+--- a/src/3rdparty/zlib/gzguts.h
++++ b/src/3rdparty/zlib/gzguts.h
+@@ -16,9 +16,8 @@
+ #  ifndef _LARGEFILE_SOURCE
+ #    define _LARGEFILE_SOURCE 1
+ #  endif
+-#  ifdef _FILE_OFFSET_BITS
+-#    undef _FILE_OFFSET_BITS
+-#  endif
++#  undef _FILE_OFFSET_BITS
++#  undef _TIME_BITS
+ #endif
+ 
+ #include "qconfig.h"
+-- 
+2.43.0
